@@ -3,12 +3,12 @@ from django.db import models
 
 class tasks(models.Model):
 
-    task_number = models.IntegerField ( default=-1 )
+    task_number = models.IntegerField ()
     task = models.CharField ( max_length= 500 )
     answer = models.CharField ( max_length=20 )
     subject = models.CharField ( max_length= 20 )
-    id_test = models.IntegerField ()
-    image = models.CharField ( max_length= 500) # link on picture
+    id_test = models.IntegerField ( default= -1)
+    image = models.CharField ( max_length= 500, default='NULL' ) # link on picture
 
 
 class comment_task (models.Model):
