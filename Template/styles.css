@@ -36,7 +36,7 @@ a {
 .header {
 	padding: 10px 15px;
 	color: #fff;
-	background: #0ca678;
+	background: #3caa3c;
 }
 
 .header__project-title {
@@ -52,7 +52,7 @@ a {
  * Jumbotron styles
  */
 .jumbotron {
-	background: #38d9a9;
+	background: #90e490;
 	/*background: #79d883;*/
 	text-align: center;
 	color: #fff;
@@ -105,16 +105,16 @@ a {
 	display: inline-block;
 	margin: 10px;
 	width: calc(33.33% - 2 * 12px);
-	background: #0ca678;
+	background: #3caa3c;
 	color: white;
 	transition: all 0.5s ease;
 	cursor: pointer;
 }
 .ready-variants__variant:hover {
-	background: #087f5b;
+	background: #29791B;
 }
 .ready-variants__variant:active {
-	background: #099268; 
+	background: #3caa3c; 
 }
 @media (max-width: 800px) {
 	.ready-variants__variant {
