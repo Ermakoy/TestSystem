@@ -1,0 +1,144 @@
+.main {
+  margin-top: -60px;
+  background: #f8f9fa;
+  padding: 40px 10px; }
+  .main h2 {
+    color: #343a40;
+    margin: 10px 0 20px 50px; }
+  .main .variants {
+    margin: 20px calc(50px - 10px) 70px calc(50px - 10px); }
+  .main .variant {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-top: 20px;
+    font-size: 1.3rem;
+    text-align: center;
+    display: inline-block;
+    height: 60px;
+    margin: 10px 10px;
+    width: calc(33.33% - 2 * 10px);
+    background: #adb5bd;
+    color: white;
+    transition: all 0.5s ease;
+    cursor: pointer; }
+    .main .variant:hover {
+      background: #868e96; }
+    .main .variant:active {
+      background: #ced4da; }
+  .main h2.inline-block,
+  .main .generate-btn {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: inline-block;
+    vertical-align: middle; }
+  .main h2.inline-block {
+    width: calc(100% - 290px - 100px);
+    padding-right: 20px; }
+  .main .generate-btn {
+    text-align: center;
+    width: 290px;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    background: #868e96;
+    padding: 12px 16px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px; }
+    .main .generate-btn:hover {
+      background: #343a40; }
+    .main .generate-btn:active {
+      background: #495057; }
+  .main .generator {
+    margin: 50px; }
+    .main .generator .item {
+      background: white;
+      margin-bottom: 4px;
+      padding: 20px 20px; }
+      .main .generator .item div {
+        display: inline-block;
+        vertical-align: middle; }
+      .main .generator .item .theme {
+        font-size: 1.3rem;
+        width: calc(100% - 210px - 10px); }
+      .main .generator .item .questions {
+        background: #868e96;
+        padding: 8px 10px;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        color: white;
+        width: 210px;
+        margin-left: 10px; }
+        .main .generator .item .questions span {
+          font-size: 1.1rem; }
+        .main .generator .item .questions .count {
+          font-size: 1.2rem;
+          margin-left: 5px;
+          margin-top: -2px;
+          background: white;
+          color: black;
+          border-radius: 4px;
+          -moz-border-radius: 4px;
+          -webkit-border-radius: 4px;
+          padding: 0 5px; }
+        .main .generator .item .questions .inc-btn,
+        .main .generator .item .questions .dec-btn {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          font-size: 1.3rem;
+          font-weight: 900, 700;
+          cursor: pointer;
+          background: #f8f9fa;
+          border-radius: 50%;
+          -moz-border-radius: 50%;
+          -webkit-border-radius: 50%;
+          padding: 0 5px;
+          color: black;
+          transition: all 0.5s ease; }
+          .main .generator .item .questions .inc-btn:hover,
+          .main .generator .item .questions .dec-btn:hover {
+            background: #dee2e6; }
+        .main .generator .item .questions .dec-btn {
+          margin-left: 20px;
+          padding: 0 6px; }
+        .main .generator .item .questions .inc-btn {
+          margin-left: 10px; }
+  @media (max-width: 800px) {
+    .main .variant {
+      width: calc(49.99% - 2 * 10px); }
+    .main h2 {
+      margin-left: 0; }
+    .main .variants {
+      margin: 20px 0 70px 0; }
+    .main h2.inline-block {
+      width: calc(100% - 290px); }
+    .main .generator {
+      margin: 50px 0; } }
+  @media (max-width: 650px) {
+    .main h2.inline-block {
+      display: block !important;
+      width: 100%;
+      margin-bottom: 25px; }
+    .main .generator {
+      text-align: center; }
+      .main .generator .theme {
+        width: 100% !important;
+        margin-bottom: 20px; } }
+  @media (max-width: 550px) {
+    .main .variant {
+      width: 100%;
+      margin: 10px 0; } }
