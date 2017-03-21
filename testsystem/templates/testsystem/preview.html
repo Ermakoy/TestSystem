@@ -1,10 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>PROJECT TITLE</title>
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'testsystem/css/style.css' %}" />
 </head>
 <body>
 	<header class="header">
@@ -26,7 +28,7 @@
 		</section>
 		<section class="task">
 			<h2 class="task__question">2. На рисунке 25 показано изменение температуры воздуха на протяжении трёх суток. По горизонтали указывается дата и время, по вертикали — значение температуры в градусах Цельсия. Определите по рисунку наибольшую температуру 6 августа после 6:00. Ответ дайте в градусах Цельсия</h2>
-			<img src="test1.png" alt="">
+			<img src="{% static 'testsystem/img/test1.png' %}" alt="">
 			<div class="task__answer-field">
 				<h2>Ответ: </h2>
 				<input type="text">
@@ -34,7 +36,7 @@
 		</section>
 		<section class="task">
 			<h2 class="task__question">3. Найдите площадь ромба, изображённого на клетчатой бумаге с размером клетки 1 см х 1 см. Ответ дайте в квадратных сантиметрах.</h2>
-			<img src="test2.png" alt="">
+			<img src="{% static 'testsystem/img/test2.png' %}" alt="">
 			<div class="task__answer-field">
 				<h2>Ответ: </h2>
 				<input type="text">
