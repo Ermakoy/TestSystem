@@ -1,101 +1,48 @@
 from django.db import models
 
 
-# ---------------- Math -------------
-class tasks_math(models.Model):
 
-    task_number = models.IntegerField( default = -1)
-    id_subject = models.IntegerField( default = -1)
+class tasks (models.Model):
 
+    type_task = models.CharField (  max_length=2,
+                                    verbose_name='Номер задания')
 
-    task = models.CharField ( max_length= 500 )
-    image = models.CharField ( max_length= 500, default='NULL' ) # link on picture
+    subject_choise = (
+        ('None', 'Не выбрано'),
+        ('Math', 'Математика'),
+        ('Russian', 'Русскйи язык'),
+    )
 
+    subject =  models.CharField ( max_length=20,
+                                  choices=subject_choise,
+                                  default='None',
+                                  verbose_name='Предмет')
 
-class answer_math(models.Model):
+    task = models.TextField(verbose_name='Текст задания')
 
-    id_task = models.IntegerField (primary_key=True, default=-1)
+    answer = models.CharField ( max_length=20,
+                                verbose_name='Ответ')
 
-    answer = models.CharField ( max_length= 20)
+    image = models.CharField ( max_length=100,
+                               verbose_name='Картинка к заданию')
 
+    test_id = models.CharField ( max_length=2,
+                                 blank=True,
+                                 verbose_name='Номер теста')
 
-
-class fix_test_math (models.Model):
-
-    task_1 = models.IntegerField( default = -1)
-    task_2 = models.IntegerField( default = -1)
-    task_3 = models.IntegerField( default = -1)
-    task_4 = models.IntegerField( default = -1)
-    task_5 = models.IntegerField( default = -1)
-    task_6 = models.IntegerField( default = -1)
-    task_7 = models.IntegerField( default = -1)
-    task_8 = models.IntegerField( default = -1)
-    task_9 = models.IntegerField( default = -1)
-    task_10 = models.IntegerField( default = -1)
-    task_11 = models.IntegerField( default = -1)
-    task_12 = models.IntegerField( default = -1)
-
-# ----------------- Russian -------------------
-
-class tasks_russian(models.Model):
-
-    task_number = models.IntegerField( default = -1)
-    id_subject = models.IntegerField( default = -1)
-
-
-    task = models.CharField ( max_length= 500 )
-    image = models.CharField ( max_length= 500, default='NULL' ) # link on picture
-
-
-class answer_russian(models.Model):
-
-    id_task = models.IntegerField (primary_key=True, default=-1)
-
-    answer = models.CharField ( max_length= 20)
+    date_pub = models.DateField ( auto_now_add=True )
 
 
 
-class fix_test_russian (models.Model):
+class tasks_comments (models.Model):
 
-    task_1 = models.IntegerField( default = -1)
-    task_2 = models.IntegerField( default = -1)
-    task_3 = models.IntegerField( default = -1)
-    task_4 = models.IntegerField( default = -1)
-    task_5 = models.IntegerField( default = -1)
-    task_6 = models.IntegerField( default = -1)
-    task_7 = models.IntegerField( default = -1)
-    task_8 = models.IntegerField( default = -1)
-    task_9 = models.IntegerField( default = -1)
-    task_10 = models.IntegerField( default = -1)
-    task_11 = models.IntegerField( default = -1)
-    task_12 = models.IntegerField( default = -1)
+    id_task = models.ForeignKey  (tasks)
 
-# etc ...
-
-#temp
-class subject (models.Model):
-
-    subject = models.CharField ( max_length=30)
+    comment = models.TextField ( verbose_name='Комментарий')
 
 
 class temp_test (models.Model):
-    
-    id_subject = models.IntegerField ( primary_key= True, default=-1)
-    
-    id_task = models.IntegerField( default = -1)
 
-
-class suggestion ( models.Model ):
-    
-    task_number = models.IntegerField ( default=-1 )
-    
-    task = models.CharField ( max_length= 1000 )
-    
-    answer = models.CharField ( max_length=20 )
-    
-    
-    id_subject = models.IntegerField( default = -1)
-    
-    image = models.CharField( max_length=500 )  # link on picture
-    
-    flag = models.IntegerField ( default= 0 ) # 0 - not seemed; -1 - denied; 1 - accept
+    id_test = models.CharField ( verbose_name='Тест',
+                                 max_length=5)
+    tasks = models.TextField ( verbose_name='Задания')
