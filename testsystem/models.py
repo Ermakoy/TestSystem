@@ -4,33 +4,41 @@ from django.db import models
 
 class tasks (models.Model):
 
-    type_task = models.CharField (  max_length=2,
-                                    verbose_name='Номер задания')
+    type_task = models.IntegerField (verbose_name='Номер задания')
 
-    subject_choise = (
-        ('None', 'Не выбрано'),
+    subject_choises = (
         ('Math', 'Математика'),
         ('Russian', 'Русскйи язык'),
     )
 
-    subject =  models.CharField ( max_length=20,
-                                  choices=subject_choise,
-                                  default='None',
-                                  verbose_name='Предмет')
+    subject =  models.CharField (   max_length=20,
+                                    choices=subject_choises,
+                                    default='None',
+                                    verbose_name='Предмет')
 
     task = models.TextField(verbose_name='Текст задания')
 
     answer = models.CharField ( max_length=20,
                                 verbose_name='Ответ')
 
-    image = models.CharField ( max_length=100,
-                               verbose_name='Картинка к заданию')
+    image = models.CharField (  blank=True,
+                                max_length=100,
+                                verbose_name='Картинка к заданию')
 
-    test_id = models.CharField ( max_length=2,
-                                 blank=True,
-                                 verbose_name='Номер теста')
+    test_id = models.IntegerField (blank=True,
+                                   verbose_name='Номер теста')
 
     date_pub = models.DateField ( auto_now_add=True )
+
+    flag_choices = (
+        ('0', 'Не проверено'),
+        ('1', 'Проверено'),
+    )
+
+    flag = models.CharField ( max_length=20,
+                              default='1',
+                              choices=flag_choices,
+                              help_text='Поле для проверки задания, проверил задание - отметь единичкой ;)')
 
 
 
@@ -43,6 +51,5 @@ class tasks_comments (models.Model):
 
 class temp_test (models.Model):
 
-    id_test = models.CharField ( verbose_name='Тест',
-                                 max_length=5)
+    id_test = models.IntegerField( verbose_name='Тест')
     tasks = models.TextField ( verbose_name='Задания')
