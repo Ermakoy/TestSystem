@@ -189,21 +189,23 @@ a {
 	/*background: #dee2e6;*/
 	flex: 0 0 170px;
 }
-.variants-generator__task__controller__count {
-	font-size: 1.3em;
-	font-weight: bold;
-	margin-right: 10px;
-	display: inline-block;
-	vertical-align: middle;
-}
-.variants-generator__task__controller__dec,
-.variants-generator__task__controller__inc {
+
+.generate-btn {
+	margin: 20px auto 40px auto;
+	padding: 15px 0;
+	font-size: 1.3rem;
+	text-align: center;
+	max-width: 230px;
+	background: #3caa3c;
+	color: white;
+	transition: all 0.5s ease;
 	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 5px;
-/*	width: 24px;
-	height: 24px;*/
+}
+.generate-btn:hover {
+	background: #29791B;
+}
+.generate-btn:active {
+	background: #3caa3c; 
 }
 .center{
 	width: 150px;
