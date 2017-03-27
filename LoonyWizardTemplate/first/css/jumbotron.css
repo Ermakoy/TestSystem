@@ -1,8 +1,0 @@
-.jumbotron {
-  background: #e9ecef;
-  text-align: center;
-  color: #212529;
-  padding: 30px 20px 80px 20px; }
-  @media (max-width: 550px) {
-    .jumbotron h1 {
-      font-size: 1.5em; } }
