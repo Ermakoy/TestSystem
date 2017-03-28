@@ -1,0 +1,17 @@
+<html lang="ru">
+<head>
+
+</head>
+<body>
+	
+	Тест номер: {{test.test_id}}
+	{% for i in test %}
+		<div>
+			<p>Номер задания: {{i.type_task}}</p>
+			<p>Задание:</p>
+			<p>{{i.task}}</p>
+		</div>
+    {% endfor %}
+	
+</body>
+</html>

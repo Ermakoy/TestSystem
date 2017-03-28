@@ -28,7 +28,8 @@ class tasks (models.Model):
     test_id = models.IntegerField (blank=True,
                                    verbose_name='Номер теста')
 
-    date_pub = models.DateField ( auto_now_add=True )
+    date_pub = models.DateField ( verbose_name='Дата публикации',
+                                  auto_now_add=True )
 
     flag_choices = (
         ('0', 'Не проверено'),
@@ -39,6 +40,7 @@ class tasks (models.Model):
                               default='1',
                               choices=flag_choices,
                               help_text='Поле для проверки задания, проверил задание - отметь единичкой ;)')
+
 
 
 
