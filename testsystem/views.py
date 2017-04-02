@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
+from .models import tasks
 
 def index(request):
 
@@ -9,3 +8,9 @@ def index(request):
 def preview(request):
 
     return  render(request, 'testsystem/preview.html')
+
+def get_test(request):
+
+    test = tasks.objects.filter (test_id = 1).order_by('type_task')
+
+    return render(request, 'testsystem/test.html', {'test': test})
