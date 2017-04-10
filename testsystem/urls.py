@@ -1,9 +1,8 @@
-from django.conf.urls import url
-
+from django.conf.urls import include, url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^hello$', views.preview, name='preview'),
-    url(r'^get_test$', views.get_test, name='get_test'),
+    url(r'^math$', views.math),
+    url(r'^api/tasks', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^math/get_test/(?P<num>[1-6]+)/$', views.get_test)
 ]

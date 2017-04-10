@@ -1,16 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
 from .models import tasks
 
-def index(request):
+def math(request):
+    return render_to_response('testsystem/subject.html',
+                              {'range': ['1. Простейшие текстовые задачи',
+                                         '2. Чтение графиков и диаграмм',
+                                         '3. Квадратная решётка, координатная плоскость',
+                                         '4. Начала теории вероятностей',
+                                         '5. Простейшие уравнения',
+                                         '6. Планеметрия: задачи, связанные с углами',
+                                         '7. Производная и первообразная',
+                                         '8. Стереометрия',
+                                         '9. Вычислительные преобразования',
+                                         '10. Задачи с прикладным содержанием',
+                                         '11. Текстовые задачи',
+                                         '12. Наибольшее и наименьшее значение функций'],
+                              'name': 'МАТЕМАТИКЕ'})
 
-    return  render(request, 'testsystem/index.html')
+def get_test(request, num):
+    args = {}
+    range = ['1. Простейшие текстовые задачи',
+             '2. Чтение графиков и диаграмм',
+             '3. Квадратная решётка, координатная плоскость',
+             '4. Начала теории вероятностей',
+             '5. Простейшие уравнения',
+             '6. Планеметрия: задачи, связанные с углами',
+             '7. Производная и первообразная',
+             '8. Стереометрия',
+             '9. Вычислительные преобразования',
+             '10. Задачи с прикладным содержанием',
+             '11. Текстовые задачи',
+             '12. Наибольшее и наименьшее значение функций']
+    args['queryset'] = tasks.objects.filter(test_id=num)
+    args['range'] = range
+    return render_to_response('testsystem/test.html', args)
 
-def preview(request):
 
-    return  render(request, 'testsystem/preview.html')
 
-def get_test(request):
 
-    test = tasks.objects.filter (test_id = 1).order_by('type_task')
 
-    return render(request, 'testsystem/test.html', {'test': test})
+
