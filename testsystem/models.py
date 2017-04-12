@@ -7,9 +7,8 @@ class tasks(models.Model):
     task = models.TextField(verbose_name='Текст задания')
     answer = models.CharField(max_length=20,
                               verbose_name='Ответ')
-    image = models.CharField(blank=True,
-                             max_length=100,
-                             verbose_name='Картинка к заданию')
+    image = models.ImageField(blank=True,
+                              verbose_name='Картинка к заданию')
     subject_choises = (
         ('Math', 'Математика'),
         ('Russian', 'Русскйи язык'),
@@ -21,7 +20,10 @@ class tasks(models.Model):
 
     test_id = models.IntegerField(blank=True,
                                   verbose_name='Номер теста')
-
+    solve = models.TextField(blank=True,
+                             verbose_name='Решение задания')
+    solve_image = models.ImageField(blank='True',
+                                    verbose_name='Картинка к решению')
     date_pub = models.DateField(verbose_name='Дата публикации',
                                 auto_now_add=True)
     flag_choices = (
@@ -31,6 +33,7 @@ class tasks(models.Model):
     flag = models.CharField(max_length=20,
                             default='1',
                             choices=flag_choices)
+
 
 class tasks_comments(models.Model):
     id_task = models.ForeignKey(tasks)

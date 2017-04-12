@@ -10,6 +10,7 @@ class TasksAdmin(admin.ModelAdmin):
         'id',        'subject_id',
         'type_task', 'task',
         'answer',    'image',
+        'solve',     'solve_image',
         'test_id',   'date_pub',
         'flag',)
 
