@@ -18,7 +18,7 @@
 		</div>
 	</header>
 	<div class="lol">
-		<h1>ТЕСТЫ ЕГЭ ПО {{ name }}</h1>
+		<h1>ТЕСТЫ ЕГЭ ПО {{ subject }}</h1>
 	</div>
 	<main class="app-container centered">
 		
@@ -30,12 +30,9 @@
 			</p>
 			
 			<div class="variants-container">
-				<div class="ready-variants__variant no-select"><a href="{{ subject }}/get_test/1">Вариант 1</a></div>
-				<div class="ready-variants__variant no-select"><a href="{{ subject }}/get_test/2">Вариант 2</a></div>
-				<div class="ready-variants__variant no-select"><a href="{{ subject }}/get_test/3">Вариант 3</a></div>
-				<div class="ready-variants__variant no-select"><a href="{{ subject }}/get_test/4">Вариант 4</a></div>
-				<div class="ready-variants__variant no-select"><a href="{{ subject }}/get_test/5">Вариант 5</a></div>
-				<div class="ready-variants__variant no-select"><a href="{{ subject }}/get_test/6">Вариант 6</a></div>
+                {% for numberoftest in xrange %}
+				<div class="ready-variants__variant no-select"><a href="{% url 'get static test' subjecteng numberoftest %}">Вариант {{ numberoftest }}</a></div>
+                {% endfor %}
 			</div>
 
 		</section>
@@ -48,11 +45,11 @@
 			</p>
 
 			<div class="tasks-container">
-                {% for i in range %}
+                {% for i in nameoftasks %}
 				<section class="variants-generator__task">
 					
 					<h4 class="variants-generator__task__title">
-						{{ i }}
+						{{ i.typeoftask }} {{ i.nameoftask }}
 					</h4>
 						 <div class="center">
 						  		<div class="input-group">
