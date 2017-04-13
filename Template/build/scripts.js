@@ -61,8 +61,12 @@
 	};
 
 	function generateVariant(inputValues) {
-		var queryParameters = inputValues.join(",");
-		window.location.href = "get_temp_test/" + queryParameters;
+		var parameters = inputValues.map(function (value) {
+			return "id=" + value;
+		});
+		var queryParameters = parameters.join("&");
+		var query = "get_temp_test/?" + queryParameters;
+		window.location.href = query;
 	}
 
 /***/ }),
