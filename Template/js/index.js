@@ -10,6 +10,6 @@ window.onload = () => {
 };
 
 function generateVariant(inputValues) {
-	console.log("generateVariant function was called.")
-	console.log(inputValues);
+	const queryParameters = inputValues.join(",");
+	window.location.href = `get_temp_test/${queryParameters}`;
 }
