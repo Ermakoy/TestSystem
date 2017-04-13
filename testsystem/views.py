@@ -21,9 +21,9 @@ def subject(request, subject_t):
 
 def get_static_test(request, subject_t, num):
     args = {}
-    args['subject'] = subject_t
-    args['nameoftasks'] = Subject.objects.filter(subjecteng=subject_t).order_by('typeoftask')
-    args['queryset'] = tasks.objects.filter(test_id=num, subject_id=subject_t)
+    args['nameoftasks'] = Subject.objects.filter(subjecteng=subject_t)
+    args['queryset'] = tasks.objects.filter(test_id=num, subject_id=subject_t).order_by('type_task')
+    args['subject'] = args['nameoftasks'][0].subject.upper()
     return render_to_response('testsystem/test.html', args)
 
 # Задел под создание и выдачи темп тест
