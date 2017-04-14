@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.shortcuts import render_to_response
 from django.db.models import Max
 
-
+from random import sample
 from .models import tasks, Subject
 from .serializers import TasksSerializer, TestStaticAnswer
 
@@ -29,6 +29,19 @@ def get_static_test(request, subject_t, num):
 # Задел под создание и выдачи темп тест
 def get_new_temp_test(request, subject_t):
     args = {}
+    k = 0
+    count = request.GET.get('id')
+    print(count)
+    args['queryset'] = []*sum([int(i) for i in count])
+    for i in range(1, len(count)):
+        queryset = tasks.objects.filter(type_task=i)
+        n = sample(range(0, len(queryset)), str(count[i-1]))
+        for j in n:
+            args['queryset'][k] = j
+            k += 1
+
+
+
 
 # Задел на json ответ
 def check_static_test(request, subject_t, num, answer_t):
