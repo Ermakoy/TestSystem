@@ -10,6 +10,8 @@ window.onload = () => {
 };
 
 function generateVariant(inputValues) {
-	console.log("generateVariant function was called.")
-	console.log(inputValues);
+	const parameters = inputValues.map(value => `id=${value}`);
+	const queryParameters = parameters.join("&");
+	const query = `get_temp_test/?${queryParameters}`;
+	window.location.href = query;
 }
