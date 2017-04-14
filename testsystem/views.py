@@ -1,13 +1,12 @@
-from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.http import HttpResponse, JsonResponse
-from rest_framework.parsers import JSONParser
 from django.shortcuts import render_to_response
+from django.db.models import Max
 
-
+from random import sample
 from .models import tasks, Subject
-from .serializers import TasksSerializer
+from .serializers import TasksSerializer, TestStaticAnswer
 
 
 
@@ -15,15 +14,29 @@ def subject(request, subject_t):
     args = {}
     args['nameoftasks'] = Subject.objects.filter(subjecteng=subject_t)
     args['subjecteng'] = subject_t;
-    args['xrange'] = ['1','2','3','4','5','6']
+    # Вывод максимального номера статического теста и запись его в args в качестве списка от 1 до n
+    args['xrange'] = [
+        str(i) for i in range(1, tasks.objects.filter(subject_id=subject_t).aggregate(Max('test_id'))['test_id__max']+1)]
     return render_to_response('testsystem/subject.html', args)
 
-def get_test(request, subject_t, num):
+def get_static_test(request, subject_t, num):
     args = {}
-    args['subject'] = subject_t
     args['nameoftasks'] = Subject.objects.filter(subjecteng=subject_t)
-    args['queryset'] = tasks.objects.filter(test_id=num, subject_id=subject_t)
+    args['queryset'] = tasks.objects.filter(test_id=num, subject_id=subject_t).order_by('type_task')
+    args['subject'] = args['nameoftasks'][0].subject.upper()
     return render_to_response('testsystem/test.html', args)
+
+# Задел под создание и выдачи темп тест
+def get_new_temp_test(request, subject_t):
+    pass
+
+
+
+
+# Задел на json ответ
+def check_static_test(request, subject_t, num, answer_t):
+    queryset = tasks.objects.filter(test_id=num, subject_id=subject_t).order_by('type_task')
+    serializer = TestStaticAnswer(tasks, many=True)
 
 
 @api_view(['GET', 'POST'])
@@ -35,36 +48,12 @@ def tasks_list(request):
         return Response (serializer.data)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = TasksSerializer(data=data)
+        serializer = TasksSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, serializer=status.HTTP_400_BAD_REQUEST)
 
-@csrf_exempt
-def tasks_detail(request, pk):
-
-    try:
-        task = tasks.objects.get(pk=pk)
-    except tasks.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == 'GET':
-        serializer = TasksSerializer(task)
-        return JsonResponse(serializer.data)
-
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = TasksSerializer(task, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
-
-    elif request.method == 'DELETE':
-        task.delete()
-        return HttpResponse(status=204)
 
 
 

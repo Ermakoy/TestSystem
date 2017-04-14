@@ -5,3 +5,8 @@ class TasksSerializer (serializers.ModelSerializer):
     class Meta:
         model = tasks
         fields = ('id', 'subject_id','test_id', 'type_task', 'answer', 'flag', 'task')
+
+class TestStaticAnswer (serializers.ModelSerializer):
+    class Meta:
+        model = tasks
+        fields = ('type_task', 'answer')
