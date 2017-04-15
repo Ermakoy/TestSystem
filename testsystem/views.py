@@ -34,9 +34,9 @@ def get_new_temp_test(request, subject_t):
 
 
 # Задел на json ответ
-def check_static_test(request, subject_t, num, answer_t):
-    queryset = tasks.objects.filter(test_id=num, subject_id=subject_t).order_by('type_task')
-    serializer = TestStaticAnswer(tasks, many=True)
+def check_test(request):
+    ans = request.GET.get('id', 'if')
+    print(ans)
 
 
 @api_view(['GET', 'POST'])
