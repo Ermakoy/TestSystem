@@ -10,4 +10,4 @@ class SubjectSerializer(serializers.ModelSerializer):
 class StatictestSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
-        fields = ('id', 'subject_id', 'type_task', 'task')
+        fields = ('id', 'subject_id', 'type_task', 'task', 'image')

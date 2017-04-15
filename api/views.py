@@ -22,7 +22,6 @@ def static(request):
     id = request.GET.get('id')
     subject = request.GET.get('subj')
     data = tasks.objects.filter(subject_id=subject, test_id=int(id)).order_by('type_task')
-    print(data)
     serializer = StatictestSerializer(data, many=True)
     return Response(serializer.data)
 

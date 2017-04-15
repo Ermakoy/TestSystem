@@ -43,6 +43,7 @@ class tasks_comments(models.Model):
 class temp_test(models.Model):
     id_test = models.IntegerField(verbose_name='Тест')
     tasks = models.TextField(verbose_name='Задания')
+    subject = models.CharField(max_length=30)
 
 class Subject(models.Model):
     subject = models.CharField(max_length=20,
