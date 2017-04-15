@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    url(r'v0/$', views.getsubject),
+    url(r'v0/$', views.getsubjects),
 ]

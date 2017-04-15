@@ -12,7 +12,7 @@ from .serializers import TasksSerializer, TestStaticAnswer
 
 
 def subject(request):
-    return HttpResponse('testsystem/subject.html')
+    return HttpResponse('testsystem/subjects.html')
 
 
 
