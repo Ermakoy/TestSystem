@@ -12,3 +12,8 @@ class TestSerializer(serializers.ModelSerializer):
         model = tasks
         fields = ('id', 'subject_id', 'type_task', 'task', 'image')
 
+class SolveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = tasks
+        fields = ('id', 'solve', 'solve_image')
+

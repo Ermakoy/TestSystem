@@ -4,7 +4,7 @@ from rest_framework import status
 
 from random import sample
 from testsystem.models import Subject, tasks, temp_test
-from .serializers import SubjectSerializer, TestSerializer
+from .serializers import SubjectSerializer, TestSerializer, SolveSerializer
 
 
 @api_view(['GET'])
@@ -86,8 +86,8 @@ def answer(request):
     subject = request.GET.get('subj')
     TF = [0]*len(ans)
     resp = []
-    print(TF)
     data = tasks.objects.filter(id__in = id, subject_id = subject).order_by('type_task')
+
     for i in range(len(ans)):
         if data[i].answer == ans[i]:
             TF[i] = True
@@ -100,3 +100,10 @@ def answer(request):
         resp.append(dictin)
 
     return Response(resp)
+
+@api_view(['GET'])
+def solve(request):
+    id = request.GET.getlist('id')
+    data = tasks.objects.filter(id__in = id)
+    serializer = SolveSerializer(data, many=True)
+    return Response(serializer.data)
