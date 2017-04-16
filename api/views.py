@@ -40,9 +40,25 @@ def newtemp(request):
             return Response(status=status.HTTP_204_NO_CONTENT)
         for j in req:
             id.append(data[j].id)
-    print(id)
     p = temp_test(tasks="&".join([str(i) for i in id]), subject=subject)
     p.save()
-    data = tasks.objects.filter(id__in=id)
+    data = tasks.objects.filter(id__in=id).order_by('type_task')
     serializer = TestSerializer(data, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def temp(request):
+    subject = request.GET.get('subj')
+    id = int(request.GET.get('id'))
+    id = temp_test.objects.filter(id=id, subject=subject)
+    id = [int(i) for i in id[0].tasks.split('&')]
+    data = tasks.objects.filter(id__in=id).order_by('type_task')
+    serializer = TestSerializer(data, many=True)
+    return Response(serializer.data)
+
+
+"""
+@api_view(['GET'])
+def temp(request):
+    id = int(request.GET.get('id'))
+"""
