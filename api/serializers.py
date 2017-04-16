@@ -11,3 +11,4 @@ class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
         fields = ('id', 'subject_id', 'type_task', 'task', 'image')
+
