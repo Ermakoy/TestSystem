@@ -73,7 +73,7 @@ h3{
 .header {
 	padding: 7px 15px;
 	color: #fff;
-	background: #3caa3c;
+	background: #ffd35a;
 }
 
 .header_project-title {
@@ -96,7 +96,7 @@ h3{
 		"Segoe UI", "Roboto", "Oxygen", 
 		"Ubuntu", "Cantarell", "Fira Sans", 
 		"Droid Sans", "Helvetica Neue", sans-serif;
-	background: #90e490;
+	background: #FFE59F;
 	/*background: #79d883;*/
 	text-align: center;
 	color: #fff;
@@ -149,16 +149,16 @@ h3{
 	display: inline-block;
 	margin: 10px;
 	width: calc(33.33% - 2 * 12px);
-	background: #3caa3c;
+	background: #ffd35a;
 	color: white;
 	transition: all 0.5s ease;
 	cursor: pointer;
 }
 .ready-variants__variant:hover, .ready-variants__variant:visited {
-	background: #29791B;
+	background: #F1CC13;
 }
 .ready-variants__variant:active {
-	background: #3caa3c; 
+	background: #ffd35a; 
 }
 @media (max-width: 800px) {
 	.ready-variants__variant {
@@ -209,16 +209,16 @@ h3{
 	font-size: 1.3rem;
 	text-align: center;
 	max-width: 230px;
-	background: #3caa3c;
+	background: #ffd35a;
 	color: white;
 	transition: all 0.5s ease;
 	cursor: pointer;
 }
 .generate-btn:hover {
-	background: #29791B;
+	background: #F1CC13;
 }
 .generate-btn:active {
-	background: #3caa3c; 
+	background: #ffd35a; 
 }
 .center{
 	width: 150px;
