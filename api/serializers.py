@@ -7,7 +7,7 @@ class SubjectSerializer(serializers.ModelSerializer):
         model = Subject
         fields = ('subject', 'subjecteng')
 
-class StatictestSerializer(serializers.ModelSerializer):
+class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
         fields = ('id', 'subject_id', 'type_task', 'task', 'image')
