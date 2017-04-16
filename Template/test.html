@@ -3,18 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>PROJECT TITLE</title>
-	<link rel="stylesheet" href="styles.css">
+	<title>STATIC TEST</title>
+	<link rel="stylesheet" href="css/styles_for_test.css">
 </head>
 <body>
 	<header class="header">
 		<div class="centered">
-			<a href="about.html" class="header__about-project">О ПРОЕКТЕ</a>
-			<h3 class="header__project-title">PROJECT TITLE</h3>
+			<a href="about.html" class="header_enter">войти</a>
+			<h3 class="header__project-title">DOGES PASS EXAMS</h3>
 		</div>
 	</header>
-	<div class="jumbotron jumbotron-without-text">
-		
+	<div class="jumbotron">
+		<h1>ВАРИАНТ 1</h1>
 	</div>
 	<main class="app-container centered">
 		<section class="task">
@@ -22,6 +22,7 @@
 			<div class="task__answer-field">
 				<h2>Ответ: </h2>
 				<input type="text">
+				<div class="clear"></div>
 			</div>
 		</section>
 		<section class="task">
@@ -40,13 +41,38 @@
 				<input type="text">
 			</div>
 		</section>
-		<section class="task">
+		<section class="task" id="last">
 			<h2 class="task__question">4. В папке у Димы Гущина лежат четыре пронумерованных цифрами 1, 2, 3, 4 файла с документами, а также заявление на отпуск. Доставая заявление на отпуск, Дмитрий Дмитриевич случайно вытащил и файл с документами. Найдите вероятность того, что он достал файл 3.</h2>
 			<div class="task__answer-field">
 				<h2>Ответ: </h2>
 				<input type="text">
 			</div>
 		</section>
-	</main>
+		<a class="results" href="javascript:void(0);" tabindex="1">	
+		<div class="app-container answer-btn final_btn">
+				Проверить!
+		</div>
+		</a>
+		<div class="results-sheet">
+			Ваш результат:</br></br>
+			<div class="your-points">25 </div>
+			из
+			<div class="max-points"> 35</div>
+			<table>
+				<tr>
+					<th>Ваш ответ</th>
+					<th>Правильный ответ</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1 <a class="table-a" href="">Посмотреть решение</a></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>3  <a class="table-a wrong" href="">Посмотреть решение</a></td>
+				</tr>
+			</table>
+		</div>
+	</main>	
 </body>
 </html>
