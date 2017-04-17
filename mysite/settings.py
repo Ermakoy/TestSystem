@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'SessionMiddleware',
+    'AuthenticationMiddleware ',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -76,6 +78,16 @@ TEMPLATES = [
     },
 ]
 
+
+
+
+
+
+
+
+
+
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
@@ -84,12 +96,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_db',
-        'USER' : 'admin',
-        'PASSWORD' : 'g76fbbe9',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase'
     }
 }
 
@@ -135,3 +143,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+
+try:
+    from . import mysettings
+except ImportError:
+    pass

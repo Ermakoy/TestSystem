@@ -40,15 +40,14 @@ def static(request):
 
 @api_view(['GET'])
 def newtemp(request):
-
+    id = []
     num = [int(i) for i in request.GET.getlist('num')]
     try:
         subject = request.GET.get('subj')
     except:
         return Response(status=status.HTTP_204_NO_CONTENT)
-    id = []
-    for i in range(len(num)):
 
+    for i in range(len(num)):
         data = tasks.objects.filter(subject_id=subject, type_task=i+1)
         try:
             req = sample((0, len(data)-1), num[i])
@@ -77,12 +76,6 @@ def temp(request):
     serializer = TestSerializer(data, many=True)
     return Response(serializer.data)
 
-
-"""
-@api_view(['GET'])
-def task(request):
-    id = int(request.GET.get('id'))
-"""
 
 @api_view(['GET'])
 def answer(request):

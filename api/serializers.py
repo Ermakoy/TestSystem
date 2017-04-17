@@ -15,5 +15,5 @@ class TestSerializer(serializers.ModelSerializer):
 class SolveSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
-        fields = ('id', 'solve', 'solve_image')
+        fields = ('id','answer', 'solve', 'solve_image')
 
