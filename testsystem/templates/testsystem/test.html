@@ -1,32 +1,14 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>PROJECT TITLE</title>
-	<link rel="stylesheet" href="styles.css">
+	<title>PROJECT TITLE TEST</title>
+	<link rel="stylesheet" href={%  static "testsystem/css/styles_for_test.css" %}>
 </head>
 <body>
-	<header class="header">
-		<div class="centered">
-			<a href="about.html" class="header__about-project">О ПРОЕКТЕ</a>
-			<h3 class="header__project-title">PROJECT TITLE</h3>
-		</div>
-	</header>
-	<div class="jumbotron jumbotron-without-text">
-		
-	</div>
-	<main class="app-container centered">
-        {% for task in queryset %}
-            <section class="task">
-                <h2 class="task__question">{{ task.task }}</h2>
-                <div class="task__answer-field">
-                    <h2>Ответ: </h2>
-                    <input type="text">
-                </div>
-		    </section>
-        {% endfor %}
-    <p><input type="submit" value="Отправить форму" form="data"></p>
-	</main>
+
 </body>
 </html>
