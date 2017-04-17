@@ -1,3 +1,6 @@
 myvenv
 .idea
-/mysite/local_settings.py
+/mysite/mysettings.py
+/mysite/__pycache__
+/api/__pycache__
+/testsystem/__pycache__
