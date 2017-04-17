@@ -10,5 +10,5 @@ urlpatterns = [
     url(r'v0/test$', views.temp),
     url(r'v0/answer$', views.answer),
     url(r'v0/solve$', views.solve),
-    url(r'v0/(?P<subj>\w+)/$', views.getsubject),
+    url(r'v0/(?P<subj>\w+)/$', views.getsubjectinfo),
 ]

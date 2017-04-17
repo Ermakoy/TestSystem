@@ -17,7 +17,7 @@ def subjects(request):
 
 
 @api_view(['GET'])
-def getsubject(request, subj):
+def getsubjectinfo(request, subj):
 
     data = Subject.objects.filter(subjecteng=subj)
     serializer = SubjectSerializer(data, many=True)
@@ -27,9 +27,11 @@ def getsubject(request, subj):
 
 @api_view(['GET'])
 def static(request):
-
-    id = request.GET.get('id')
-    subject = request.GET.get('subj')
+    try:
+        id = request.GET.get('id')
+        subject = request.GET.get('subj')
+    except:
+        return Response(status=status.HTTP_204_NO_CONTENT)
     data = tasks.objects.filter(subject_id=subject, test_id=int(id)).order_by('type_task')
     serializer = TestSerializer(data, many=True)
 
@@ -40,7 +42,10 @@ def static(request):
 def newtemp(request):
 
     num = [int(i) for i in request.GET.getlist('num')]
-    subject = request.GET.get('subj')
+    try:
+        subject = request.GET.get('subj')
+    except:
+        return Response(status=status.HTTP_204_NO_CONTENT)
     id = []
     for i in range(len(num)):
 
@@ -62,9 +67,10 @@ def newtemp(request):
 
 @api_view(['GET'])
 def temp(request):
-
-    subject = request.GET.get('subj')
-    id = int(request.GET.get('id'))
+    try:
+        id = int(request.GET.get('id'))
+    except:
+        return Response(status=status.HTTP_204_NO_CONTENT)
     id = temp_test.objects.filter(id=id, subject=subject)
     id = [int(i) for i in id[0].tasks.split('&')]
     data = tasks.objects.filter(id__in=id).order_by('type_task')
@@ -81,25 +87,20 @@ def task(request):
 @api_view(['GET'])
 def answer(request):
 
-    ans = request.GET.getlist('ans')
+    answer = request.GET.getlist('ans')
     id = [int(i) for i in request.GET.getlist('id')]
     subject = request.GET.get('subj')
-    TF = [0]*len(ans)
-    resp = []
     data = tasks.objects.filter(id__in = id, subject_id = subject).order_by('type_task')
+    response = []
 
-    for i in range(len(ans)):
-        if data[i].answer == ans[i]:
-            TF[i] = True
-        else: TF[i] = False
-    for i in range(len(TF)):
+    for i in range(len(answer)):
         dictin = {}
-        dictin['answ'] = TF[i]
+        dictin['answer'] = True if data[i].answer == answer[i] else False
         dictin['type_task'] = data[i].type_task
         dictin['id'] = data[i].id
-        resp.append(dictin)
+        response.append(dictin)
 
-    return Response(resp)
+    return Response(response)
 
 @api_view(['GET'])
 def solve(request):
