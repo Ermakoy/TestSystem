@@ -5,7 +5,7 @@ module.exports = {
 	entry: './src/index',
 	output: {
 		filename: 'scripts.js',
-		path: path.join(__dirname, 'build')
+		path: path.join(__dirname, '../testsystem/static/testsystem/js')
 	},
 	cache: true,
 	watchOptions: {
