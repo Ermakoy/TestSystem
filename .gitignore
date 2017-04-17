@@ -4,3 +4,4 @@ myvenv
 /mysite/__pycache__
 /api/__pycache__
 /testsystem/__pycache__
+mydatabase
