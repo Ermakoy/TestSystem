@@ -3,11 +3,14 @@ import { createStore, applyMiddleware } from 'redux';
 import { fetchStaticTests } from './actions';
 import reducer from './reducer';
 
-const store = createStore(
-	reducer,
-	applyMiddleware(
-		thunkMiddleware
-	)
-);
+console.log("Hello! I was included!");
 
-store.dispatch(fetchStaticTests('math'));
+
+// const store = createStore(
+// 	reducer,
+// 	applyMiddleware(
+// 		thunkMiddleware
+// 	)
+// );
+
+//store.dispatch(fetchStaticTests('math'));
