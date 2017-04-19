@@ -59,15 +59,20 @@ def getinfostest(request):
 
 @api_view(['GET'])
 def static(request):
-    try:
-        id = request.GET.get('id')
-        subject = request.GET.get('subj')
-    except:
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    data = tasks.objects.filter(subject_id=subject, test_id=int(id)).order_by('type_task')
-    serializer = TestSerializer(data, many=True)
 
-    return Response(serializer.data)
+    id = request.GET.get('id')
+    subject = request.GET.get('subject')
+    data = tasks.objects.filter(subject_id=subject, test_id=int(id)).order_by('type_task')
+    order = 1
+    response = []
+    for i in data:
+        dic = {}
+        dic['id'] = i.id
+        dic['order'] = order
+        dic['text'] = i.task
+        dic['image'] = "NULL"
+        response.append(dic)
+    return Response(response)
 
 
 @api_view(['GET'])
