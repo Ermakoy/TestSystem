@@ -10,32 +10,69 @@ from .serializers import SubjectSerializer, TestSerializer, SolveSerializer
 @api_view(['GET'])
 def subjects(request):
 
-    data = Subject.objects.all().distinct('subject')
-    serializer = SubjectSerializer(data, many=True)
+    data = Subject.objects.all()
+    sup = []
+    response = []
+    for i in data:
+        if i.subjecteng not in sup:
+            sup.append(i.subjecteng)
+            dic = {}
+            dic['name'] = i.subject
+            dic['nameQuery'] = i.subjecteng
+            response.append(dic)
 
-    return  Response(serializer.data)
+    return  Response(response)
 
 
 @api_view(['GET'])
-def getsubjectinfo(request, subj):
+def getinfosubject(request):
 
-    data = Subject.objects.filter(subjecteng=subj)
-    serializer = SubjectSerializer(data, many=True)
+    subject = request.GET.get('subject')
+    dataSub = Subject.objects.filter(subjecteng=subject)
+    response = []
+    for i in dataSub:
+        dic = {}
+        dic['id'] = i.typeoftask
+        dic['name'] = i.nameoftask
+        dic['max_value'] = len(tasks.objects.filter(type_task=i.typeoftask))
+        response.append(dic)
 
-    return  Response(serializer.data)
+    return  Response(response)
+
+@api_view(['GET'])
+def getinfostest(request):
+
+    subject = request.GET.get('subject')
+    data = tasks.objects.filter(subject_id=subject)
+    response = []
+    sup = []
+    for i in data:
+        if i.test_id not in sup:
+            sup.append(i.test_id)
+            dic = {}
+            dic['id'] = str(i.id)
+            dic['number'] = str(len(sup))
+            response.append(dic)
+
+    return  Response(response)
 
 
 @api_view(['GET'])
 def static(request):
-    try:
-        id = request.GET.get('id')
-        subject = request.GET.get('subj')
-    except:
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    data = tasks.objects.filter(subject_id=subject, test_id=int(id)).order_by('type_task')
-    serializer = TestSerializer(data, many=True)
 
-    return Response(serializer.data)
+    id = request.GET.get('id')
+    subject = request.GET.get('subject')
+    data = tasks.objects.filter(subject_id=subject, test_id=int(id)).order_by('type_task')
+    order = 1
+    response = []
+    for i in data:
+        dic = {}
+        dic['id'] = i.id
+        dic['order'] = order
+        dic['text'] = i.task
+        dic['image'] = "NULL"
+        response.append(dic)
+    return Response(response)
 
 
 @api_view(['GET'])
