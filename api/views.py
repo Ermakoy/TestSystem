@@ -10,19 +10,34 @@ from .serializers import SubjectSerializer, TestSerializer, SolveSerializer
 @api_view(['GET'])
 def subjects(request):
 
-    data = Subject.objects.all().distinct('subject')
-    serializer = SubjectSerializer(data, many=True)
+    data = Subject.objects.all()
+    sup = []
+    response = []
+    for i in data:
+        if i.subjecteng not in sup:
+            sup.append(i.subjecteng)
+            dic = {}
+            dic['name'] = i.subject
+            dic['nameQuery'] = i.subjecteng
+            response.append(dic)
 
-    return  Response(serializer.data)
+    return  Response(response)
 
 
 @api_view(['GET'])
-def getsubjectinfo(request, subj):
+def getsubjectinfo(request):
 
-    data = Subject.objects.filter(subjecteng=subj)
-    serializer = SubjectSerializer(data, many=True)
+    subject = request.GET.get('subject')
+    dataSub = Subject.objects.filter(subjecteng=subject)
+    response = []
+    for i in dataSub:
+        dic = {}
+        dic['id'] = i.typeoftask
+        dic['name'] = i.nameoftask
+        dic['max_value'] = len(tasks.objects.filter(type_task=i.typeoftask))
+        response.append(dic)
 
-    return  Response(serializer.data)
+    return  Response(response)
 
 
 @api_view(['GET'])
