@@ -25,7 +25,7 @@ def subjects(request):
 
 
 @api_view(['GET'])
-def getsubjectinfo(request):
+def getinfosubject(request):
 
     subject = request.GET.get('subject')
     dataSub = Subject.objects.filter(subjecteng=subject)
@@ -36,6 +36,23 @@ def getsubjectinfo(request):
         dic['name'] = i.nameoftask
         dic['max_value'] = len(tasks.objects.filter(type_task=i.typeoftask))
         response.append(dic)
+
+    return  Response(response)
+
+@api_view(['GET'])
+def getinfostest(request):
+
+    subject = request.GET.get('subject')
+    data = tasks.objects.filter(subject_id=subject)
+    response = []
+    sup = []
+    for i in data:
+        if i.test_id not in sup:
+            sup.append(i.test_id)
+            dic = {}
+            dic['id'] = i.id
+            dic['name'] = "варивнт"+str(len(sup))
+            response.append(dic)
 
     return  Response(response)
 

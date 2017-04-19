@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'v0/test$', views.temp),
     url(r'v0/answer$', views.answer),
     url(r'v0/solve$', views.solve),
-    url(r'v0/getsubjectinfo$', views.getsubjectinfo),
+    url(r'v0/getinfosubject$', views.getinfosubject),
+    url(r'v0/getinfostest$', views.getinfostest),
 ]
