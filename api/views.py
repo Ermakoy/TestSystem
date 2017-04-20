@@ -8,7 +8,7 @@ from .serializers import SubjectSerializer, TestSerializer, SolveSerializer
 
 
 @api_view(['GET'])
-def subjects(request):
+def subjects(request): #Distinct не работает в SQLlite!!
     data = Subject.objects.all()
     sup = []
     response = []
@@ -73,6 +73,8 @@ def static(request):
 def check(request):
     id = [int(i) for i in request.GET.getlist('id')]
     answer = request.GET.getlist('answer')
+    if len(id) != len(answer):
+        return Response(status=status.HTTP_400_BAD_REQUEST)
     dicAns, dic = {}, {}
     response = [' ']*len(id)
     k = 0
@@ -85,5 +87,20 @@ def check(request):
         response[k] = dic
     return Response(response)
 
+
+@api_view(['GET'])
+def solve(request):
+    id = [int(i) for i in request.GET.getlist('id')]
+    response = [' ']*len(id)
+    k = 0
+    data = tasks.objects.filter(id__in=id)
+    for i in data:
+        dic = {}
+        dic['id'] = i.id
+        dic['solve'] = i.solve
+        dic['img'] = "NULL"
+        response[k] = dic
+        k += 1
+    return Response(response)
 
 
