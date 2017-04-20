@@ -4,7 +4,6 @@ from rest_framework import status
 
 from random import sample
 from testsystem.models import Subject, tasks, temp_test
-from .serializers import SubjectSerializer, TestSerializer, SolveSerializer
 
 
 @api_view(['GET'])
@@ -101,6 +100,33 @@ def solve(request):
         dic['img'] = "NULL"
         response[k] = dic
         k += 1
+    return Response(response)
+
+
+@api_view(['GET'])
+def ncustom(request):
+    subject = request.GET.get('subject')
+    count = [int(i) for i in request.GET.getlist('count')]
+    response = []
+    order = 0
+    for i in range(len(count)):
+        data = tasks.objects.filter(type_task=i+1, subject_id=subject)
+        print(data)
+        try:
+            id = sample((0, len(data)-1), count[i])
+        except: return Response(status=status.HTTP_400_BAD_REQUEST)
+        data = [data[i] for i in id]
+        for j in data:
+            dic = {}
+            dic['id'] = j.id
+            dic['order'] = order
+            dic['task'] = j.task
+            dic['img'] = "NULL"
+            order += 1
+            response.append(dic)
+            print(response)
+    p = temp_test(tasks='&'.join([str(i['id']) for i in response]), subject=subject)
+    p.save()
     return Response(response)
 
 
