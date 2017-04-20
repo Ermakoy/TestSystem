@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'v0/getinfosubject$', views.getinfosubject),
     url(r'v0/getinfostest$', views.getinfostest),
     url(r'v0/stest$', views.static),
-    url(r'v0/check$', views.check),
+    #url(r'v0/check$', views.check),
 ]
