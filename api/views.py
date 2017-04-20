@@ -50,8 +50,8 @@ def getinfostest(request):
         if i.test_id not in sup:
             sup.append(i.test_id)
             dic = {}
-            dic['id'] = i.id
-            dic['name'] = "варивнт"+str(len(sup))
+            dic['id'] = str(i.id)
+            dic['number'] = str(len(sup))
             response.append(dic)
 
     return  Response(response)
